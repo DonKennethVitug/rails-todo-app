@@ -24,6 +24,7 @@ services:
     depends_on:
       - rails-todo-db
     environment:
+      - RAILS_ENV=${RAILS_ENV}
       - GMAIL_USERNAME=${GMAIL_USERNAME}
       - GMAIL_PASSWORD=${GMAIL_PASSWORD}
     networks:
