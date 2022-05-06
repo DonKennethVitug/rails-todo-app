@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+
+  rails-db:
+    container_name: 'rails-db'
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    networks:
+      rails-network:
+        ipv4_address: 192.168.161.1
+
+  rails-web:
+    container_name: 'rails-web'
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/myapp
+    ports:
+      - "3000"
+    depends_on:
+      - rails-db
+    networks:
+      rails-network:
+        ipv4_address: 192.168.161.2
+
+networks:
+  rails-network:
+    external:
+      name: rails-network
