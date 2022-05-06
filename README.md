@@ -5,6 +5,8 @@ A Todo Application with User Login, Registration, Password Reset, Email Confirma
 ## DEMO
 - https://todo-rails.displaycontent.space/
 
+![Rails Todo Demo](https://user-images.githubusercontent.com/17028149/167185429-1bb6f27c-885f-4ca1-9258-a819629e96e3.gif)
+
 ## Built with
 - Bootstrap
 - Javascript
