@@ -1,0 +1,22 @@
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .container-fluid.h-100.position-absolute
+    .row.justify-content-center.align-items-center.h-100
+      .col.col-sm-6.col-md-6.col-lg-5.col-xl-4
+        h1.content-heading
+          | Login
+        section
+          form[action=""]
+            = render "devise/shared/error_messages", resource: resource
+            .form-group
+              = f.label :email
+              = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+            .form-group.mt-3
+              = f.label :password
+              = f.password_field :password, autocomplete: "current-password", class: "form-control"
+            - if devise_mapping.rememberable?
+              .form-group.mt-3
+                = f.check_box :remember_me, class: "me-1"
+                = f.label :remember_me
+            .actions.mb-3
+              = f.submit "Log in", class: "btn btn-primary btn-block mt-3 form-control"
+            = render "devise/shared/links"

@@ -1,0 +1,30 @@
+- if tasks.empty?
+  span.text-warning
+    | There are no tasks!
+- else
+  table.table.table-hover.table-bordered
+    thead
+      tr
+        th
+          | Title
+        th
+          | Created at
+        th
+          | Completed
+        th
+          | Actions
+    tbody
+      - tasks.each do |task|
+        tr
+          td
+            strong
+              = task.title
+          td.text-info
+            = task.created_at
+          td.text-success
+            = task.completed
+          td.align-middle
+            = link_to edit_task_path(task), remote: true do
+              i.fa.fa-edit.me-2
+            = link_to task_delete_path(task), remote: true
+              i.fa.fa-trash

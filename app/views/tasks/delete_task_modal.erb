@@ -1,0 +1,4 @@
+m = $('#deleteTaskModal');
+m.html('<%= j(render partial: 'task_delete', locals: {task: @task})%>');
+m.modal('show');
+$('#deleteTaskModal').integrateDatepicker();
