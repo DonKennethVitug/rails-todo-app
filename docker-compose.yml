@@ -25,6 +25,8 @@ services:
       - rails-todo-db
     environment:
       - RAILS_ENV=${RAILS_ENV}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
       - GMAIL_USERNAME=${GMAIL_USERNAME}
       - GMAIL_PASSWORD=${GMAIL_PASSWORD}
     networks:
