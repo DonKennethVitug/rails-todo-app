@@ -2,8 +2,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   host: rails-todo-db
-  username: ENV["DB_USER"]
-  password: ENV["DB_PASSWORD"]
+  username: <%= ENV["DB_USER"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
   pool: 5
 
 development:
@@ -13,6 +13,7 @@ development:
 production:
   <<: *default
   database: todo_production
+  secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
 
 test:
   <<: *default

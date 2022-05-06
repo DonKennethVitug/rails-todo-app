@@ -8,7 +8,7 @@ services:
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - DB_PASSWORD=${DB_PASSWORD}
     networks:
       rails-network:
         ipv4_address: 192.168.161.2
@@ -27,6 +27,7 @@ services:
       - RAILS_ENV=${RAILS_ENV}
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
+      - SECRET_KEY_BASE=${GMAIL_PASSWORD}
       - GMAIL_USERNAME=${GMAIL_USERNAME}
       - GMAIL_PASSWORD=${GMAIL_PASSWORD}
     networks:
