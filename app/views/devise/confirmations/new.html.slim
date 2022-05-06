@@ -1,0 +1,15 @@
+= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+  .container-fluid.h-100.mt-5
+    .row.justify-content-center.align-items-center.h-100
+      .col.col-sm-6.col-md-6.col-lg-5.col-xl-4
+        h1.content-heading
+          | Resend confirmation instructions
+        section
+          form[action=""]
+            = render "devise/shared/error_messages", resource: resource
+            .form-group
+              = f.label :email
+              = f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "form-control"
+            .actions.mb-3
+              = f.submit "Resend confirmation instructions", class: "btn btn-primary btn-block mt-3 form-control"
+            = render "devise/shared/links"

@@ -1,0 +1,40 @@
+version: '3.1'
+
+services:
+
+  rails-todo-db:
+    container_name: 'rails-todo-db'
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      - DB_PASSWORD=${DB_PASSWORD}
+    networks:
+      rails-network:
+        ipv4_address: 192.168.161.2
+
+  rails-todo-web:
+    container_name: 'rails-todo-web'
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/todo
+    ports:
+      - "3000:3000"
+    depends_on:
+      - rails-todo-db
+    environment:
+      - RAILS_ENV=${RAILS_ENV}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - SECRET_KEY_BASE=${GMAIL_PASSWORD}
+      - GMAIL_USERNAME=${GMAIL_USERNAME}
+      - GMAIL_PASSWORD=${GMAIL_PASSWORD}
+    networks:
+      rails-network:
+        ipv4_address: 192.168.161.3
+
+networks:
+  rails-network:
+    external:
+      name: rails-network
