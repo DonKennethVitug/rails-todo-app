@@ -1,5 +1,26 @@
 {
-  "name": "todo",
-  "private": true,
-  "dependencies": {}
+  "name": "rails-todo-app",
+  "version": "1.0.1",
+  "description": "A Todo Application with User Login, Registration, Password Reset, Email Confirmation and CRUD system for Todo List built with Rails",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DonKennethVitug/rails-todo-app.git"
+  },
+  "keywords": [
+    "rails"
+  ],
+  "author": "Don Kenneth G. Vitug",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DonKennethVitug/rails-todo-app/issues"
+  },
+  "homepage": "https://github.com/DonKennethVitug/rails-todo-app#readme"
 }
