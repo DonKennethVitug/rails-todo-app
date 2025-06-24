@@ -93,16 +93,15 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.delivery_method = :smtp
-  host = "todo-rails.displaycontent.space"
-  config.action_mailer.default_url_options = { host: host }
+  config.action_mailer.default_url_options = { host: ENV["HOST"] }
 
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
+    :address              => "smtp.resend.com",
     :port                 => 587,
-    :user_name            => ENV["GMAIL_USERNAME"],
-    :password             => ENV["GMAIL_PASSWORD"],
-    :authentication       => "plain",
+    :user_name            => Rails.application.credentials.dig(:smtp, :username),
+    :password             => Rails.application.credentials.dig(:smtp, :password),
+    :authentication       => :plain,
     :enable_starttls_auto => true
   }
 end

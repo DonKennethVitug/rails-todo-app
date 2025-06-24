@@ -3,28 +3,31 @@ services:
   rails-todo-db:
     container_name: 'rails-todo-db'
     image: postgres:14
+    env_file:
+      - .env
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
-      - DB_PASSWORD=password
+      - POSTGRES_PASSWORD=$DB_PASSWORD
     networks:
-      server-network:
+      - server-network
 
   rails-todo-web:
     container_name: 'rails-todo-web'
-    build: .
-    volumes:
-      - .:/app
-    ports:
-      - "3000:3000"
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    env_file:
+      - .env
     depends_on:
       - rails-todo-db
     environment:
-      - RAILS_ENV=development
-      - DB_USER=postgres
-      - DB_PASSWORD=password
+      - RAILS_ENV=production
+      - DB_USER=$DB_USER
+      - DB_PASSWORD=$DB_PASSWORD
+      - HOST=$HOST
     networks:
-      server-network:
+      - server-network
 
 networks:
   server-network:
