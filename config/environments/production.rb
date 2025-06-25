@@ -98,7 +98,7 @@ Rails.application.configure do
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
     :address              => "smtp.resend.com",
-    :port                 => 587,
+    :port                 => 2587,
     :user_name            => Rails.application.credentials.dig(:smtp, :username),
     :password             => Rails.application.credentials.dig(:smtp, :password),
     :authentication       => :plain,
